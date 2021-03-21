@@ -1,0 +1,27 @@
+title = "Configuration File"
+
+[webserver]
+listen_address = "0.0.0.0"
+listen_port = 8080
+access_url = "http://127.0.0.1:8080"
+
+[misc]
+app_secret = "n`T:-9O9\\&%,4`j{.Up/\\2/2vk)!i!!b7g&h8h)XRiTf8y~m+g1H9}aZ7"
+
+[database.sqlite3]
+enabled = true
+file_path = "D:/data2.db"
+
+[database.sqlServer]
+enable = false
+server = "127.0.0.1"
+port = 3006
+db_name = "myDB"
+db_user = "root"
+db_password = "password"
+db_type = "mysql"
+
+[logging]
+log_file = "logs\\my_app2.txt"
+log_level = "debug"
+create_directory = true

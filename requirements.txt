@@ -1,2 +1,9 @@
-cherrypy
-requests
+cherrypy # Required: Web Server
+requests # Required: Web API Requests (OAUTH)
+toml # Required: Configuration
+
+azure-mgmt-resource # Required if using AZURE
+azure-mgmt-compute # Required if using AZURE
+azure-mgmt-network # Required if using AZURE
+azure-identity # Required if using AZURE
+azure-common # Required if using AZURE
