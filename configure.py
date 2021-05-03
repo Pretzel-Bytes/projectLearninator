@@ -108,6 +108,17 @@ def validate_config_web_server(dict_webserver_config: dict):
         bool_valid_config = False
     if not validate(dict_webserver_config, 'access_url', 14, str, "webserver['access_url']"):
         bool_valid_config = False
+    if not validate(dict_webserver_config, 'access_log', 6, str, "webserver['access_log']"):
+        bool_valid_config = False
+    if not validate(dict_webserver_config, 'error_log', 5, str, "webserver['error_log']"):
+        bool_valid_config = False
+    dict_session_limits = dict_webserver_config['session_limits']
+    if not validate(dict_session_limits, 'login_session_time_limit', 1, int, "webserver.session_limits['login_session_time_limit']"):
+        bool_valid_config = False
+    if not validate(dict_session_limits, 'user_session_idle_time_limit_remember_me', 1, int, "webserver.session_limits['user_session_idle_time_limit_remember_me']"):
+        bool_valid_config = False
+    if not validate(dict_session_limits, 'user_session_idle_time_limit', 1, int, "webserver.session_limits['user_session_idle_time_limit']"):
+        bool_valid_config = False
     return bool_valid_config
 
 
@@ -137,8 +148,7 @@ def validate_database(dict_database: dict):
         else:
             my_logger.info("sqlite3 does not exist in config, skipping")
         if 'sqlServer' in dict_database:
-            if not validate(dict_database['sqlServer'], 'enabled', 4, bool, "database.sqlServer['enabled']"):
-                bool_valid_config = False
+            if validate(dict_database['sqlServer'], 'enabled', 4, bool, "database.sqlServer['enabled']"):
                 if not dict_database['sqlServer']['enabled']:
                     my_logger.info("sqlServer is not enabled, skipping")
                 else:
@@ -160,6 +170,9 @@ def validate_database(dict_database: dict):
                             my_logger.error("database.sqlServer['db_type'] not valid. Must be on of the following:"
                                             " 'mysql', 'mariadb', 'mssql', 'postgresql'")
                             bool_valid_config = False
+            else:
+                bool_valid_config = False
+                my_logger.info("sqlServer data is invalid")
         else:
             my_logger.info("sqlServer does not exist in config, skipping")
         if not bool_enabled:

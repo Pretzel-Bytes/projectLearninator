@@ -1,0 +1,4 @@
+[
+  {name:  'authenticate-password', exportName:  'AuthenticatePassword', path:  '/login'},
+  {name:  'authenticate-password', exportName:  'AuthenticatePassword', path:  '/login2'}
+]

@@ -4,6 +4,12 @@ title = "Configuration File"
 listen_address = "0.0.0.0"
 listen_port = 8080
 access_url = "http://127.0.0.1:8080"
+access_log = "logs/webserver/access.log"
+error_log = "logs/webserver/error.log"
+[webserver.session_limits]
+login_session_time_limit = 300
+user_session_idle_time_limit_remember_me = 25200
+user_session_idle_time_limit = 10080
 
 [misc]
 app_secret = "DxweajRJSIfygOj3DxmQOehJwcV1qZz8TSghpWzTfmZSTkWxn9VF2hY9"
@@ -19,9 +25,9 @@ file_path = "db.sqlite3"
 
 [database.sqlServer]
 enabled = false
-server = "127.0.0.1"
-port = 3006
-db_name = "myDB"
+server = "dockerhost"
+port = 3306
+db_name = "projectLearninator"
 db_user = "root"
-db_password = "password"
-db_type = "mysql"
+db_password = "1qaz2wsx!QAZ@WSX"
+db_type = "mariadb"

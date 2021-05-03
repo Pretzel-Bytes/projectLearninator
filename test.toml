@@ -1,0 +1,64 @@
+[[routes]]
+  name = "core_user_management"
+  route_path = "/settings/user-management"
+  component_name = "UserManagement"
+  page_title = "User Management"
+  file_path = "user-management/user-management.js"
+  [[routes.child_routes]]
+    name = "core_user_management-edit_user"
+    route_path = "edit-user/:id"
+    component_name = "AddEditUser"
+    page_title = "Edit User"
+    file_path = "user-management/components/user-table/children/add-edit-user/add-edit-user.js"
+  [[routes.child_routes]]
+    name = "core_user_management-add-edit-prefix"
+    route_path = "add-edit-prefix/:id"
+    component_name = "AddEditPrefix"
+    file_path = "user-management/components/user-prefix/children/add-edit-prefix/add-edit-prefix.js"
+  [[routes.child_routes]]
+    name = "core_user_management-add-edit-suffix"
+    route_path = "add-edit-suffix/:id"
+    component_name = "AddEditSuffix"
+    file_path = "user-management/components/user-suffix/children/add-edit-suffix/add-edit-suffix.js"
+  [[routes.child_routes]]
+    name = "core_user_management-reset-password"
+    route_path = "reset-password/:id/:name"
+    component_name = "ResetPassword"
+    file_path = "user-management/components/user-table/children/reset-password/reset-password.js"
+  [[routes.child_routes]]
+    name = "core_user_management-enable-disable-user"
+    route_path = "enable-disable/:id"
+    component_name = "EnableDisableUser"
+    file_path = "user-management/components/user-table/children/enable-disable-user/enable-disable-user.js"
+  [[routes.child_routes]]
+    name = "core_user_management-delete-suffix"
+    route_path = "delete-suffix/:id"
+    component_name = "DeleteSuffix"
+    file_path = "user-management/components/user-suffix/children/delete-suffix/delete-suffix.js"
+  [[routes.child_routes]]
+    name = "core_user_management-add-edit-position"
+    route_path = "add-edit-position/:id"
+    component_name = "AddEditPosition"
+    file_path = "user-management/components/user-position/children/add-edit-position/add-edit-position.js"
+  [[routes.child_routes]]
+    name = "core_user_management-delete-position"
+    route_path = "delete-position/:id"
+    component_name = "DeletePosition"
+    file_path = "user-management/components/user-position/children/delete-position/delete-position.js"
+  [[routes.child_routes]]
+    name = "core_user_management-delete-prefix"
+    route_path = "delete-prefix/:id"
+    component_name = "DeletePrefix"
+    file_path = "user-management/components/user-prefix/children/delete-prefix/delete-prefix.js"
+  [[routes.child_routes]]
+    name = "core_user_management-add_user"
+    route_path = "add-user"
+    component_name = "AddEditUser"
+    page_title = "Add User"
+    file_path = "user-management/components/user-table/children/add-edit-user/add-edit-user.js"
+[[routes]]
+name = "test2"
+[[routes.child_routes]]
+name = "Child Test 2"
+[[routes.child_routes]]
+name = "Child Test 3"

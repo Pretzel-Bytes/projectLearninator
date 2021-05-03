@@ -36,15 +36,34 @@ class Database:
             self.database: SqLite3 = SqLite3(dict_config["sqlite3"]["file_path"], bool_startup)
             if self.database.bool_startup_success is False:
                 self.bool_db_startup_success = False
+        if dict_config["sqlServer"]["enabled"]:
+            dict_sql_server:dict = dict_config["sqlServer"]
+            if dict_sql_server['db_type'] == 'mariadb':
+                from .mariadb import MariaDB
+                self.database: MariaDB = MariaDB(dict_sql_server["db_user"], dict_sql_server['db_password'],
+                                                 dict_sql_server['server'],
+                                                 dict_sql_server['port'], dict_sql_server['db_name'],
+                                                 'app-pool', 20, True)
+                if self.database.bool_startup_success is False:
+                    self.bool_db_startup_success = False
+                    print("false")
 
     def insert_data(self, str_insert_statement: str, arr_values: list):
+        if self.bool_isSQLite:
+            str_insert_statement = str_insert_statement.replace("%s", "?")
         return self.database.insert_data(str_insert_statement, arr_values)
 
     def update_data(self, str_update_statement: str, arr_values: list):
+        if self.bool_isSQLite:
+            str_update_statement = str_update_statement.replace("%s", "?")
         return self.database.update_data(str_update_statement, arr_values)
 
     def delete_data(self, str_delete_statement: str, arr_values: list):
+        if self.bool_isSQLite:
+            str_delete_statement = str_delete_statement.replace("%s", "?")
         return self.database.delete_data(str_delete_statement, arr_values)
 
     def select_data(self, str_select_statement: str, arr_values: list):
+        if self.bool_isSQLite:
+            str_select_statement = str_select_statement.replace("%s", "?")
         return self.database.select_data(str_select_statement, arr_values)

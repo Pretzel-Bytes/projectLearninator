@@ -64,7 +64,7 @@ class SqLite3:
         self.sqlite_logger.debug("Creating Table if Not Existent")
         try:
             with open('database/sqlite3_create.sql', 'r') as sql_file:
-                sql_script = sql_file.read()
+                sql_script = sql_file.read().replace("CREATE TABLE", "CREATE TABLE IF NOT EXISTS").replace("GO", "")
                 cursor = self.connection.cursor()
                 cursor.executescript(sql_script)
                 self.connection.commit()

@@ -22,9 +22,11 @@
 
 import logger
 import configure
+from os import getcwd
 from database import Database
-
-
+from cherryPy import CherryPy
+from modules import LoadCoreModules
+from global_vars import GlobalVars
 
 
 def main():
@@ -32,12 +34,18 @@ def main():
     # my_logger.debug('Main Started')
     dict_read_config = configure.read_configuration()
     if dict_read_config['valid_config']:
-        dict_config = dict_read_config['dict_config']
+        dict_config:dict = dict_read_config['dict_config']
         my_logger = logger.get_logger('main')
         my_logger.debug('Configuration File is Syntactically Correct')
         database: Database = Database(dict_config['database'], True)
         if database.bool_db_startup_success:
-            pass
+            dict_session_limits = dict_config['webserver']['session_limits']
+            GlobalVars.Sessions.login_session_time_limit = dict_session_limits['login_session_time_limit']
+            GlobalVars.Sessions.user_session_idle_time_limit_remember_me = dict_session_limits['user_session_idle_time_limit_remember_me']
+            GlobalVars.Sessions.user_session_idle_time_limit = dict_session_limits['user_session_idle_time_limit']
+            LoadCoreModules(getcwd(), dict_config['database'])
+            CherryPy(dict_config['webserver'], database)
+
         else:
             print("FUCK")
             exit(1)

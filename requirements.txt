@@ -1,9 +1,13 @@
 cherrypy # Required: Web Server
 requests # Required: Web API Requests (OAUTH)
 toml # Required: Configuration
+pyjwt # Required for Authentication
+bcrypt
 
 azure-mgmt-resource # Required if using AZURE
 azure-mgmt-compute # Required if using AZURE
 azure-mgmt-network # Required if using AZURE
 azure-identity # Required if using AZURE
 azure-common # Required if using AZURE
+
+mariadb # Required if using MariaDB
